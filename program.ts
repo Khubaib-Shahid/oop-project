@@ -1,12 +1,53 @@
 #! /usr/bin/env node
 
 import inquirer from "inquirer";
-import Person from "./person.js";
-import Student from "./student.js";
 
 let ans = await inquirer.prompt([
     {message : "type 1 if you like to talk others and type 2 if you would rather keep to yourself", name : "ans", type : "number"}
 ])
+
+
+class Person {
+    
+    private personality : string
+
+    constructor() {
+        this.personality = "mystery";
+    }
+
+
+    public askQuestion(answer : number) : void {
+        if (answer === 1) {
+            this.personality = "Extrovert";
+        } else if (answer === 2) {
+            this.personality = "Introvert";
+        } else {
+            this.personality = "still mystery";
+        }
+    }
+    
+    get getPersonality() : string {
+        return this.personality;
+    }
+}
+
+class Student extends Person {
+    private name : string;
+
+    constructor () {
+        super();
+        this.name = "";
+    }
+
+    get getName() : string {
+        return this.name;
+    }
+
+    set getName(value) {
+        this.name = value;
+    }
+
+}
 
 let myPerson = new Person();
 
